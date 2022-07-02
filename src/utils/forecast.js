@@ -14,10 +14,17 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error){ 
             callback('Unable to find location')
         } else {
-            callback(undefined,
+            const dateAndTime = new Date(body.location.localtime)
+            
+            // t = dateAndTime.toLocaleTimeString()
+            console.log(body.location)
+            callback(undefined, 
+                `<img src =${body.current.weather_icons[0]} style="float:left;padding:4px">` + 
                 body.current.weather_descriptions +
-                `. It is currently ${body.current.temperature}\u00b0 out. It feels like ${body.current.feelslike}\u00b0 out.` +
-                ` The humidity is ${body.current.humidity}% out.`
+                `. It is currently ${body.current.temperature}\u00b0 out.` +
+                ` It feels like ${body.current.feelslike}\u00b0 out.` +
+                `<br>The humidity is ${body.current.humidity}% out.` + 
+                `<br>As of ${dateAndTime.toLocaleTimeString()}`
             )
         }
     })
