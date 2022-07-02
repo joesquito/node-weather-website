@@ -16,8 +16,6 @@ const forecast = (latitude, longitude, callback) => {
         } else {
             const dateAndTime = new Date(body.location.localtime)
             
-            // t = dateAndTime.toLocaleTimeString()
-            console.log(body.location)
             callback(undefined, 
                 `<img src =${body.current.weather_icons[0]} style="float:left;padding:4px">` + 
                 body.current.weather_descriptions +
